@@ -28,10 +28,10 @@ Route.get('/logout', async ({
   return response.redirect('/');
 });
 Route.post('/login', 'UserController.login').validator('LoginUser');
-Route.get('/post-a-job', 'JobController.userIndex');
-
 Route.group(() => {
+  Route.get('', 'JobController.userIndex');
+  Route.post('', 'JobController.create').validator('CreateJob');
   Route.get('/delete/:id', 'JobController.delete');
   Route.get('/edit/:id', 'JobController.edit');
   Route.post('/update/:id', 'JobController.update').validator('CreateJob');
-}).prefix('/post-a-job');
+}).prefix('/post-a-job')
